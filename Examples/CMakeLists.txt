@@ -1,0 +1,37 @@
+INCLUDE_DIRECTORIES( BEFORE
+  ${GF2Exchange_SOURCE_DIR}/ImageProcessingFilters
+  ${GF2Exchange_BINARY_DIR}/ImageProcessingFilters
+  ${GF2Exchange_SOURCE_DIR}/Powercrust
+  ${GF2Exchange_BINARY_DIR}/Powercrust
+)
+
+SET( DIR "${GF2Exchange_SOURCE_DIR}/ImageProcessingFilters" )
+
+IF(USE_VISUALIZATION)
+
+#  add_subdirectory( Powercrust )
+
+  ADD_EXECUTABLE( GoFigure2ContoursToMeshes GoFigure2ContoursToMeshes.cxx ${DIR}/vtkPolyDataMySQLTextReader.cxx )
+  TARGET_LINK_LIBRARIES( GoFigure2ContoursToMeshes ${ITK_LIBRARIES} ${VTK_LIBRARIES} Powercrust )
+
+ENDIF(USE_VISUALIZATION)
+
+ADD_EXECUTABLE(XYZTCLSMToMha XYZTCLSMToMha.cxx )
+TARGET_LINK_LIBRARIES(XYZTCLSMToMha ${ITK_LIBRARIES} )
+
+ADD_EXECUTABLE(XYZTLSMToMha XYZTLSMToMha.cxx )
+TARGET_LINK_LIBRARIES(XYZTLSMToMha ${ITK_LIBRARIES} )
+
+ADD_EXECUTABLE(XYZLSMToMha XYZLSMToMha.cxx )
+TARGET_LINK_LIBRARIES(XYZLSMToMha ${ITK_LIBRARIES} )
+
+ADD_EXECUTABLE(XYTLSMToMha XYTLSMToMha.cxx )
+TARGET_LINK_LIBRARIES(XYTLSMToMha ${ITK_LIBRARIES} )
+
+ADD_EXECUTABLE( convertToMha ConvertToMha.cxx )
+TARGET_LINK_LIBRARIES( convertToMha ${ITK_LIBRARIES} )
+
+ADD_EXECUTABLE( convertToMegacapture ConvertToMegacapture.cxx )
+TARGET_LINK_LIBRARIES( convertToMegacapture ${ITK_LIBRARIES} )
+
+
